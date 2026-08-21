@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — MOOZHIO Bespoke Collections</title>
+<meta name="description" content="MOOZHIO bespoke solid wood collections: Bathroom, Bedroom, Dining, Kitchen, Living Room and Wardrobe millwork across villa, commercial and large-flat projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="left"><span>Moozhio · China Headquarter — Ningbo, Zhejiang</span></div>
+    <div class="right">
+      <a href="tel:+8618057467635">+86 180 5746 7635</a>
+      <a href="mailto:m1@moozhio.com">m1@moozhio.com</a>
+    </div>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><span class="name">MOOZHI<b>O</b></span><span class="sub" style="display:block">Bespoke Solid Wood</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="active">Products</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary">Get a Quote <span class="arrow">→</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="index.html">Home</a><a href="products.html">Products</a><a href="solutions.html">Solutions</a>
+  <a href="blog.html">Blog</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+</div>
+
+<section class="page-hero">
+  <div class="bg" style="background-image:url('assets/img/home/product-banner-2.jpg')"></div>
+  <div class="overlay"></div>
+  <div class="container">
+    <span class="eyebrow">Products</span>
+    <h1>Bespoke collections.</h1>
+    <p>Six room collections, each delivered across villa, commercial and large-flat commissions. Every piece is engineered from the designer's drawings and finished in solid timber and eco-certified materials.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="container">
+    <div class="cat-filter" id="catFilter"></div>
+    <div id="productsRoot"></div>
+  </div>
+</section>
+
+<script>
+  // Build category jump chips once data is loaded
+  window.addEventListener("DOMContentLoaded", function () {
+    if (!window.SITE_DATA) return;
+    var f = document.getElementById("catFilter");
+    if (!f) return;
+    f.innerHTML = window.SITE_DATA.categories.map(function (c) {
+      return '<a class="chip" href="#' + c.id + '">' + c.name + '</a>';
+    }).join("");
+    // smooth scroll for chips (CSS handles hash, this adds highlight)
+    f.addEventListener("click", function (e) {
+      var a = e.target.closest(".chip"); if (!a) return;
+      var id = a.getAttribute("href").slice(1);
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+</script>
+
+<footer class="site">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col foot-brand">
+        <div class="name">MOOZHIO</div>
+        <p>High-end bespoke solid wood millwork. Rooted in wood, refined to perfection.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="products.html">Products</a><br><a href="solutions.html">Solutions</a><br>
+        <a href="blog.html">Blog</a><br><a href="about.html">About Us</a>
+      </div>
+      <div class="foot-col">
+        <h4>Collections</h4>
+        <a href="products.html#bathroom">Bathroom</a><br><a href="products.html#bedroom">Bedroom</a><br>
+        <a href="products.html#dining">Dining Room</a><br><a href="products.html#kitchen">Kitchen</a><br>
+        <a href="products.html#living">Living Room</a><br><a href="products.html#wardrobe">Wardrobe</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <p>Moozhio (Ningbo) Export Co., Ltd.<br>Room 102, Building 2, Huishang Fortune Center,<br>Ningxi Line, Yinzhou, Ningbo, Zhejiang, China</p>
+        <p><a href="tel:+8618057467635">+86 180 5746 7635</a><br><a href="mailto:m1@moozhio.com">m1@moozhio.com</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ningbo Moozhio Co., Ltd. — MOOZHIO. All rights reserved.</span>
+      <span>Wood Craft · Art Built · Global Delivery</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="cls" aria-label="Close">×</button>
+  <button class="navb prev" aria-label="Previous">‹</button>
+  <img src="" alt="Preview">
+  <button class="navb next" aria-label="Next">›</button>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
