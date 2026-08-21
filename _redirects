@@ -1,6 +1,0 @@
-# 让 /about 这类无后缀链接也能访问（SEO 友好）
-/about /about.html 301
-/products /products.html 301
-/solutions /solutions.html 301
-/blog /blog.html 301
-/contact /contact.html 301
