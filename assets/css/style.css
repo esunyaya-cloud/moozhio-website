@@ -92,7 +92,8 @@ header.nav {
 header.nav.scrolled { background:rgba(12,12,11,.96); border-color:var(--line-2); }
 .nav-inner { display:flex; align-items:center; justify-content:space-between; height:78px; }
 .brand { display:flex; align-items:center; gap:14px; }
-.brand img { height:38px; width:auto; filter:brightness(0) invert(1); opacity:.95; }
+.brand .brand-img { height:44px; width:auto; display:block; opacity:.96; }
+.brand img:hover { opacity:1; }
 .brand .name { font-family:var(--serif); font-size:24px; letter-spacing:2px; color:var(--beige); }
 .brand .name b { color:var(--bronze); font-weight:600; }
 .brand .sub { font-size:10px; letter-spacing:.32em; color:var(--muted-2); text-transform:uppercase; }
