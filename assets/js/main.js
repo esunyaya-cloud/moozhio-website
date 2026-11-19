@@ -293,7 +293,7 @@
      The access key lives in the hidden input[name="access_key"] of #contactForm.
      ------------------------------------------------------------------ */
   const FORM_ENDPOINT = "https://api.web3forms.com/submit";
-  const FALLBACK_MAIL = "m1@moozhio.com";
+  const FALLBACK_MAIL = "admin@moozhio.com";
 
   function initForm() {
     const f = $("#contactForm");
