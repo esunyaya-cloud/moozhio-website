@@ -15,25 +15,26 @@
   /* ---------------- Core business grid (home) ---------------- */
   function renderBizGrid(node) {
     if (!node) return;
-    node.innerHTML = D.categories.map((c, i) => `
-      <a class="biz-card reveal" href="products.html#${c.id}">
+    const items = (D.home && D.home.coreBusiness) || [];
+    node.innerHTML = items.map((c, i) => `
+      <a class="biz-card reveal" href="${c.link}">
+        <span class="biz-bg" style="background-image:url('${c.image}')"></span>
         <span class="idx">0${i + 1}</span>
         <h3>${c.name}</h3>
-        <p>Hand-finished bespoke ${c.name.toLowerCase()} millwork — ${c.total} project references.</p>
+        <p>${c.desc}</p>
         <span class="more">Explore <span class="arrow">→</span></span>
-        <span class="thumb" style="background-image:url('${c.cover}')"></span>
       </a>`).join("");
   }
 
   /* ---------------- Featured cases (home) ---------------- */
   function renderCases(node) {
     if (!node) return;
-    node.innerHTML = D.featured.map((f) => `
-      <a class="case-card reveal" href="products.html#${f.catId}">
-        ${img(f.cover, f.cat + " project")}
+    node.innerHTML = (D.featured || []).map((f) => `
+      <a class="case-card reveal" href="${f.link || "case.html"}">
+        ${img(f.cover, f.kicker + " " + f.project)}
         <span class="cap">
-          <span class="s">${f.sub}</span>
-          <span class="t">${f.cat}</span>
+          <span class="kicker">${f.kicker}</span>
+          <span class="t">${f.project}</span>
         </span>
       </a>`).join("");
   }
@@ -41,8 +42,14 @@
   /* ---------------- Trust / certificates (home + about) ---------------- */
   function renderTrust(node) {
     if (!node) return;
-    node.innerHTML = (D.about.certs || []).map((c) =>
-      `<img class="cert" src="${c}" alt="MOOZHIO certification" loading="lazy">`).join("");
+    node.innerHTML = (D.about.certs || []).map((c, i) =>
+      `<img class="cert" src="${c}" alt="MOOZHIO certification ${i + 1}" loading="lazy" tabindex="0">`).join("");
+    $$(".cert", node).forEach((im) => {
+      im.addEventListener("click", () => openLightbox(im.getAttribute("src")));
+      im.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") openLightbox(im.getAttribute("src"));
+      });
+    });
   }
 
   /* ---------------- Products page ---------------- */
@@ -85,26 +92,54 @@
       });
     });
     bindGalleryItems();
+
+    // Cross-page anchor support: nav dropdown links arrive as products.html#kitchen,
+    // but the blocks only exist after this render, so scroll manually once painted.
+    // Product images reserve no height, so lazy loading keeps shifting the layout
+    // under the target. Re-align instantly (html has scroll-behavior:smooth, which
+    // would make repeated scrollTo calls fight each other) until both the landing
+    // position and the document height settle; any user scroll cancels the tracking.
+    if (location.hash.length > 1) {
+      const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (target) {
+        let stop = false;
+        const cancel = () => { stop = true; };
+        window.addEventListener("wheel", cancel, { passive: true, once: true });
+        window.addEventListener("touchstart", cancel, { passive: true, once: true });
+        let calm = 0, frames = 0, lastTop = null, lastH = null;
+        const follow = () => {
+          if (stop) return;
+          target.scrollIntoView({ behavior: "instant", block: "start" });
+          const top = Math.round(target.getBoundingClientRect().top);
+          const h = document.documentElement.scrollHeight;
+          if (lastTop !== null && top === lastTop && h === lastH) calm++;
+          else calm = 0;
+          lastTop = top; lastH = h; frames++;
+          if (calm < 60 && frames < 900) requestAnimationFrame(follow);
+        };
+        requestAnimationFrame(() => { setTimeout(follow, 50); });
+      }
+    }
   }
 
   /* ---------------- Solutions page ---------------- */
   function renderSteps(node) {
     if (!node) return;
     const titles = {
-      "01": "Business Development",
-      "02": "Concept & Scheme Design",
-      "03": "Detailed Engineering Design",
-      "04": "Production & Delivery",
-      "05": "Professional Installation",
-      "06": "After-sales Care",
+      "01": "Project Brief & Estimate",
+      "02": "1:1 Spatial Design",
+      "03": "Material & Finish Selection",
+      "04": "Engineering & Modular Detailing",
+      "05": "Manufacturing, QC & Pre-assembly",
+      "06": "Global Delivery & Installation Support",
     };
     const blurbs = {
-      "01": "From the first consultation we map client intent, budget and site constraints, then formalise a tailored cooperation agreement with dedicated project tracking.",
-      "02": "We translate the brief into readable bespoke woodwork schemes — personalised aesthetic detailing plus centralised, efficient material selection at our showroom.",
-      "03": "Rigorous 3D spatial measurement and composite precision surveying produce a full set of production and installation drawings, with on-site re-measurement verification.",
-      "04": "Two owned source factories with automated production lines and ERP-tracked progress ensure every piece is built to specification and shipped by dedicated trucks.",
-      "05": "Our specialist crews install on site, conduct pre-installation checks, and perform three-party acceptance with the owner, project and account managers.",
-      "06": "Comprehensive VIP maintenance and repair service, with any factory top-up orders fulfilled within ≤15 working days.",
+      "01": "We begin by reviewing project drawings, spatial requirements, storage needs, site conditions and trade terms. Our team then defines the millwork scope, preliminary materials, hardware, lighting, packaging requirements, delivery schedule and logistics approach to establish a clear project budget and execution framework.",
+      "02": "Based on the approved brief and project drawings, we develop a 1:1 spatial 3D model to validate layout, proportions, functionality and visual direction. The scheme is refined through multiple rounds of coordination, allowing key spatial and design decisions to be reviewed before production begins.",
+      "03": "Alongside design development, we coordinate veneers, panels, lacquer, stone, glass, metal, hardware and lighting according to the project requirements. Physical samples and selected finishes are reviewed with the client to align appearance, performance, budget and production feasibility before final approval.",
+      "04": "Once the design and materials are approved, the project is translated into detailed production drawings, technical nodes and modular manufacturing units. Components are prepared for factory machining, hardware integration and standardized interfaces, helping simplify overseas transportation and on-site installation.",
+      "05": "Approved production data enters our manufacturing system, combining precision machinery with experienced craftsmanship across machining, assembly and finishing. Quality checks are carried out throughout production, followed by final inspection and 1:1 factory pre-assembly to verify dimensions, joints, structural stability and installation compatibility before shipment.",
+      "06": "Completed products are labeled, protected and packed for international transportation using export-ready packaging suited to the selected shipping method. We coordinate logistics tracking and provide English installation drawings, remote technical guidance and after-sales support to assist local teams from delivery through final installation and maintenance.",
     };
     node.innerHTML = D.steps.map((s) => `
       <div class="step reveal">
@@ -113,7 +148,7 @@
           <h3>${titles[s.num] || s.key}</h3>
           <p>${blurbs[s.num] || ""}</p>
           <div class="thumbs">
-            ${s.images.slice(0, 4).map((src) => `<img src="${src}" alt="step ${s.num}" loading="lazy">`).join("")}
+            ${s.images.slice(0, 6).map((src) => `<img src="${src}" alt="step ${s.num}" loading="lazy">`).join("")}
           </div>
         </div>
       </div>`).join("");
@@ -122,12 +157,32 @@
     );
   }
 
-  /* ---------------- About gallery ---------------- */
+  /* ---------------- Factory production process ---------------- */
+  function renderFactorySteps(node) {
+    if (!node) return;
+    const steps = (D.factory && D.factory.process) || [];
+    node.innerHTML = steps.map((s) => `
+      <div class="step reveal">
+        <div class="num">${s.num}</div>
+        <div class="body">
+          <h3>${s.title}</h3>
+          <p>${s.body}</p>
+          <div class="thumbs">
+            ${s.images.map((src) => `<img src="${src}" alt="Production stage ${s.num} — ${s.title}" loading="lazy">`).join("")}
+          </div>
+        </div>
+      </div>`).join("");
+    $$(".step .thumbs img", node).forEach((im) =>
+      im.addEventListener("click", () => openLightbox(im.getAttribute("src")))
+    );
+  }
+
+  /* ---------------- Factory gallery ---------------- */
   function renderAboutGallery(node) {
     if (!node) return;
-    const imgs = (D.about.gallery || []).concat(D.about.production || []);
-    node.innerHTML = imgs.map((s) =>
-      `<img src="${s}" alt="MOOZHIO atelier" loading="lazy">`).join("");
+    const imgs = (D.factory && D.factory.gallery) || [];
+    node.innerHTML = imgs.map((s, i) =>
+      `<img src="${s}" alt="Inside the MOOZHIO factory — ${i + 1}" loading="lazy">`).join("");
   }
 
   /* ---------------- Blog (editorial samples) ---------------- */
@@ -170,7 +225,7 @@
   function openLightbox(src) {
     const lb = $("#lightbox");
     if (!lb) return;
-    LB.pool = $$(".gallery .g-item img, .case-card img, .step .thumbs img")
+    LB.pool = $$(".gallery .g-item img, .case-card img, .step .thumbs img, .trust .cert")
       .map((i) => i.getAttribute("src"));
     LB.idx = Math.max(0, LB.pool.indexOf(src));
     lb.querySelector("img").src = src;
@@ -203,6 +258,15 @@
     if (tog && mm) {
       tog.addEventListener("click", () => mm.classList.toggle("open"));
       $$("a", mm).forEach((a) => a.addEventListener("click", () => mm.classList.remove("open")));
+      // mobile Products sub-menu (tap Products -> reveal the six spaces)
+      $$(".m-sub-toggle", mm).forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const sub = btn.nextElementSibling;
+          if (!sub) return;
+          const open = sub.classList.toggle("open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      });
     }
     // reveal
     const io = new IntersectionObserver((es) => {
@@ -244,6 +308,7 @@
     renderTrust($("#trustGrid"));
     renderProducts($("#productsRoot"));
     renderSteps($("#stepsRoot"));
+    renderFactorySteps($("#factorySteps"));
     renderAboutGallery($("#aboutGallery"));
     renderBlog($("#blogGrid"));
     initChrome();

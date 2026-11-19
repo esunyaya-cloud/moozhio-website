@@ -30,7 +30,7 @@
   "name": "MOOZHIO (Ningbo Moozhio Co., Ltd.)",
   "alternateName": "木臻艺筑",
   "url": "https://www.moozhio.com.cn",
-  "logo": "https://www.moozhio.com.cn/assets/img/logo.jpg",
+  "logo": "https://www.moozhio.com.cn/assets/img/logo.png",
   "image": "https://www.moozhio.com.cn/assets/img/home/product-banner-1.jpg",
   "description": "MOOZHIO is a high-end bespoke solid wood millwork manufacturer in Ningbo, China, serving overseas design firms, architects, hotels and luxury residences with whole-house customization, wardrobes, cabinets, doors, veneer and wall panels.",
   "email": "m1@moozhio.com",
@@ -65,14 +65,24 @@
 <header class="nav">
   <div class="container nav-inner">
     <a class="brand" href="index.html">
-      <img src="assets/img/logo.jpg" alt="MOOZHIO — Bespoke Solid Wood Furniture" class="brand-img">
+      <img src="assets/img/logo.png" alt="MOOZHIO — Bespoke Solid Wood Furniture" class="brand-img">
     </a>
     <nav class="nav-links">
       <a href="index.html" class="active">Home</a>
-      <a href="products.html">Products</a>
+      <a href="factory.html">Factory</a>
+      <div class="nav-item has-dropdown">
+        <a href="products.html" class="nav-drop-trigger">Products<span class="caret">∨</span></a>
+        <div class="dropdown">
+          <a href="products.html#kitchen">Kitchen</a>
+          <a href="products.html#dining">Dining Room</a>
+          <a href="products.html#wardrobe">Wardrobe</a>
+          <a href="products.html#living">Living Room</a>
+          <a href="products.html#bedroom">Bedroom</a>
+          <a href="products.html#bathroom">Bathroom</a>
+        </div>
+      </div>
       <a href="solutions.html">Solutions</a>
-      <a href="blog.html">Blog</a>
-      <a href="about.html">About</a>
+      <a href="case.html">Cases</a>
       <a href="contact.html">Contact</a>
     </nav>
     <div class="nav-cta">
@@ -82,24 +92,35 @@
   </div>
 </header>
 <div class="mobile-menu">
-  <a href="index.html">Home</a>
-  <a href="products.html">Products</a>
+  <a href="index.html" class="active">Home</a>
+  <a href="factory.html">Factory</a>
+  <div class="m-item">
+    <button class="m-sub-toggle" type="button" aria-expanded="false">Products <span class="caret">∨</span></button>
+    <div class="m-sub">
+      <a href="products.html">All Products</a>
+      <a href="products.html#kitchen">Kitchen</a>
+      <a href="products.html#dining">Dining Room</a>
+      <a href="products.html#wardrobe">Wardrobe</a>
+      <a href="products.html#living">Living Room</a>
+      <a href="products.html#bedroom">Bedroom</a>
+      <a href="products.html#bathroom">Bathroom</a>
+    </div>
+  </div>
   <a href="solutions.html">Solutions</a>
-  <a href="blog.html">Blog</a>
-  <a href="about.html">About</a>
+  <a href="case.html">Cases</a>
   <a href="contact.html">Contact</a>
 </div>
 
 <!-- Hero -->
 <section class="hero">
-  <div class="bg" style="background-image:url('assets/img/home/product-banner-1.jpg')"></div>
+  <div class="bg" style="background-image:url('assets/img/home/hero-main.jpg')"></div>
   <div class="overlay"></div>
   <div class="container">
-    <span class="eyebrow">Rooted in wood · Refined to perfection</span>
-    <h1>Bespoke solid wood, <em>engineered</em> to the last detail.</h1>
-    <p class="lead">MOOZHIO is a one-stop timber atelier serving overseas design studios, architects and developers — from whole-house millwork and original design through to factory production, on-site installation and global delivery.</p>
+    <h1 class="hero-title">From Drawing<br>to Delivered Space</h1>
+    <span class="eyebrow">BESPOKE MILLWORK FOR GLOBAL PROJECTS</span>
+    <p class="lead">We engineer, manufacture, pre-assemble and deliver bespoke millwork for overseas architects, design studios and developers.</p>
     <div class="hero-actions">
-      <a href="products.html" class="btn btn-primary">Explore Collections <span class="arrow">→</span></a>
+      <a href="case.html" class="btn btn-primary">View Cases <span class="arrow">→</span></a>
       <a href="solutions.html" class="btn btn-ghost">How We Work</a>
     </div>
     <div class="hero-stats">
@@ -117,8 +138,8 @@
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Core Business</span>
-      <h2 class="section-title">Six collections, one standard of craft.</h2>
-      <p class="lead">Every space is built to the designer's intent — solid timber, eco-certified panels and precision hardware, finished to a single, uncompromising standard.</p>
+      <h2 class="section-title">Six Spaces. One Standard of Craft.</h2>
+      <p class="lead">We combine design development, precision manufacturing, and global supply-chain capabilities to turn design intent into buildable, consistent, and deliverable millwork solutions.</p>
     </div>
     <div class="biz-grid" id="bizGrid"></div>
   </div>
@@ -129,15 +150,16 @@
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Craft & Advantage</span>
-      <h2 class="section-title">Why studios specify MOOZHIO.</h2>
+      <h2 class="section-title">Why Professionals Choose MOOZHIO</h2>
+      <p class="lead">From design development and material selection to manufacturing, pre-assembly and global delivery, we turn complex design intent into buildable, installable millwork.</p>
     </div>
     <div class="craft-grid">
-      <div class="craft-card reveal"><div class="ic">01</div><h3>Original, Readable Design</h3><p>We translate a brief into woodwork schemes any client can read, then add personalised aesthetic detailing and centralised, efficient material selection.</p></div>
-      <div class="craft-card reveal"><div class="ic">02</div><h3>Precision Engineering</h3><p>Rigorous 3D spatial measurement and composite surveying produce a full set of production and installation drawings, verified by on-site re-measurement.</p></div>
-      <div class="craft-card reveal"><div class="ic">03</div><h3>Two Owned Factories</h3><p>Automated production lines and ERP-tracked progress mean every piece is built to specification, with dedicated-truck delivery for efficiency.</p></div>
-      <div class="craft-card reveal"><div class="ic">04</div><h3>Faithful to Intent</h3><p>We strictly reproduce the designer's vision — the finished piece matches the render, down to the last joint and grain.</p></div>
-      <div class="craft-card reveal"><div class="ic">05</div><h3>Whole-House Capability</h3><p>Wardrobes, cabinets, wooden doors, veneer and wall panels — one coordinated system across the entire home.</p></div>
-      <div class="craft-card reveal"><div class="ic">06</div><h3>Global Delivery</h3><p>From a single drawing to a delivered space: sourcing, QC, logistics and customs handled end-to-end for overseas projects.</p></div>
+      <div class="craft-card reveal"><div class="ic">01</div><h3>1:1 3D Design &amp; Engineering</h3><p>We develop 1:1 spatial 3D models from client drawings and translate them into production-ready modular solutions, considering dimensions, structure, installation and overseas delivery from the start.</p></div>
+      <div class="craft-card reveal"><div class="ic">02</div><h3>Extensive Material Library</h3><p>An extensive library of veneers, panels, finishes, stone, glass, metal, hardware and lighting supports efficient and consistent material selection.</p></div>
+      <div class="craft-card reveal"><div class="ic">03</div><h3>Two Owned Factories</h3><p>Two owned factories integrate precision machining, craftsmanship, finishing and assembly under one coordinated production system.</p></div>
+      <div class="craft-card reveal"><div class="ic">04</div><h3>QC &amp; 1:1 Pre-assembly</h3><p>Multi-stage quality control and 1:1 factory pre-assembly help identify dimensional, structural and installation issues before shipment.</p></div>
+      <div class="craft-card reveal"><div class="ic">05</div><h3>Export-Ready Delivery</h3><p>From component labeling and export packaging to logistics and customs documentation, every project is prepared for international delivery.</p></div>
+      <div class="craft-card reveal"><div class="ic">06</div><h3>Installation Support</h3><p>Installation drawings, component labeling and remote technical support help local teams execute projects accurately and efficiently.</p></div>
     </div>
   </div>
 </section>
@@ -146,13 +168,13 @@
 <section class="band">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Selected Work</span>
-      <h2 class="section-title">Featured project previews.</h2>
-      <p class="lead">A glimpse from our bespoke collections — villa, commercial and large-flat interiors.</p>
+      <span class="eyebrow">SELECTED CASES</span>
+      <h2 class="section-title">Bespoke millwork, brought to life.</h2>
+      <p class="lead">Selected residential and commercial projects showcasing MOOZHIO’s bespoke millwork, material application, and finished execution.</p>
     </div>
     <div class="case-grid" id="caseGrid"></div>
     <div style="margin-top:46px" class="reveal">
-      <a href="products.html" class="btn btn-ghost">View All Collections <span class="arrow">→</span></a>
+      <a href="case.html" class="btn btn-ghost">View All Cases <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -161,17 +183,19 @@
 <section class="band alt">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Trusted Partner</span>
-      <h2 class="section-title">Backed by certification, chosen by studios.</h2>
+      <span class="eyebrow">TRUST &amp; QUALITY</span>
+      <h2 class="section-title">Built on standards. Strengthened by partnerships.</h2>
     </div>
     <div class="trust" id="trustGrid"></div>
-    <p class="trust-note reveal">MOOZHIO operates two owned source factories under an automated production system, with full ERP visibility from order to delivery. Our certifications underpin a quality regime that overseas design firms and developers rely on for repeat, cross-border projects.</p>
+    <p class="trust-note reveal">Selected certifications, brand authorizations and trusted supplier partnerships support our material sourcing, manufacturing and project delivery — providing reliable quality assurance for global projects.</p>
+    <span class="clients-title reveal">WHO WE WORK WITH</span>
     <div class="clients-row reveal">
-      <span>Luxury Residences</span><span>·</span>
-      <span>Boutique Hotels</span><span>·</span>
-      <span>Commercial Spaces</span><span>·</span>
-      <span>Real-estate Developments</span><span>·</span>
-      <span>Design Studios & Architects</span>
+      <span>Design Studios</span><span>·</span>
+      <span>Architects</span><span>·</span>
+      <span>Developers</span><span>·</span>
+      <span>Contractors</span><span>·</span>
+      <span>Hospitality Groups</span><span>·</span>
+      <span>Private Clients</span>
     </div>
   </div>
 </section>
@@ -180,10 +204,10 @@
 <section class="cta-band">
   <div class="container">
     <div>
-      <h2>Start your bespoke millwork project.</h2>
-      <p>Tell us about the space — we'll map the scheme, materials and delivery.</p>
+      <h2>Have a project in mind?</h2>
+      <p>Share your drawings and project requirements with us. We'll help define the path from design development to final delivery.</p>
     </div>
-    <a href="contact.html" class="btn btn-primary">Contact the Studio <span class="arrow">→</span></a>
+    <a href="contact.html" class="btn btn-primary">Discuss Your Project <span class="arrow">→</span></a>
   </div>
 </section>
 
@@ -193,23 +217,25 @@
     <div class="foot-top">
       <div class="foot-col foot-brand">
         <div class="name">MOOZHIO</div>
-        <p>High-end bespoke solid wood millwork. Rooted in wood, refined to perfection — wood craft, art built, global delivery.</p>
+        <p>Bespoke millwork solutions for global projects — integrating design development, material coordination, in-house manufacturing and international delivery.</p>
       </div>
       <div class="foot-col">
         <h4>Explore</h4>
+        <a href="index.html">Home</a><br>
         <a href="products.html">Products</a><br>
         <a href="solutions.html">Solutions</a><br>
-        <a href="blog.html">Blog</a><br>
-        <a href="about.html">About Us</a>
+        <a href="case.html">Cases</a><br>
+        <a href="factory.html">Factory</a><br>
+        <a href="contact.html">Contact</a>
       </div>
       <div class="foot-col">
-        <h4>Collections</h4>
-        <a href="products.html#bathroom">Bathroom</a><br>
-        <a href="products.html#bedroom">Bedroom</a><br>
-        <a href="products.html#dining">Dining Room</a><br>
+        <h4>Spaces</h4>
         <a href="products.html#kitchen">Kitchen</a><br>
+        <a href="products.html#dining">Dining Room</a><br>
+        <a href="products.html#wardrobe">Wardrobe</a><br>
         <a href="products.html#living">Living Room</a><br>
-        <a href="products.html#wardrobe">Wardrobe</a>
+        <a href="products.html#bedroom">Bedroom</a><br>
+        <a href="products.html#bathroom">Bathroom</a>
       </div>
       <div class="foot-col">
         <h4>Contact</h4>
