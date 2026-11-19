@@ -69,7 +69,7 @@ window.SITE_DATA = {
     {
       "id": "dining",
       "key": "dining",
-      "name": "Dining",
+      "name": "Dining Room",
       "types": [
         {
           "id": "villa",
@@ -262,7 +262,7 @@ window.SITE_DATA = {
     {
       "id": "living",
       "key": "living",
-      "name": "Living",
+      "name": "Living Room",
       "types": [
         {
           "id": "villa",

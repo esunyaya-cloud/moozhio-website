@@ -1,0 +1,13 @@
+# Cloudflare Pages redirects — keep old URLs (about / blog) working
+# /about  -> /factory   (old "about" page became the factory page)
+# /blog   -> /case      (old "blog" listing became the cases page)
+
+/about            /factory.html        301
+/about.html       /factory.html        301
+/about/           /factory.html        301
+
+/blog             /case.html           301
+/blog.html        /case.html           301
+/blog/            /case.html           301
+/news             /case.html           301
+/news.html        /case.html           301

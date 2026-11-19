@@ -192,10 +192,11 @@ header.nav.scrolled { background:rgba(12,12,11,.96); border-color:var(--line-2);
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   text-align:center; gap:9px;
   background:rgba(10,10,9,.30); transition:background .4s var(--ease);
+  background-image:radial-gradient(ellipse at 50% 50%, rgba(10,10,9,.34) 0%, rgba(10,10,9,.12) 62%, rgba(10,10,9,0) 100%);
 }
 .case-card:hover .cap { background:rgba(10,10,9,.46); }
-.case-card .cap .kicker { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--bronze); }
-.case-card .cap .t { font-family:var(--serif); font-size:24px; color:#ffffff; line-height:1.25; }
+.case-card .cap .kicker { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--bronze); text-shadow:0 1px 2px rgba(0,0,0,.6), 0 2px 14px rgba(0,0,0,.5); }
+.case-card .cap .t { font-family:var(--serif); font-size:24px; color:#ffffff; line-height:1.25; text-shadow:0 1px 3px rgba(0,0,0,.55), 0 2px 18px rgba(0,0,0,.45); }
 
 /* ---------- Trust / logos ---------- */
 .trust { display:grid; grid-template-columns:repeat(5,1fr); gap:18px; align-items:start; }
@@ -237,6 +238,13 @@ footer.site { background:#0c0b0a; border-top:1px solid var(--line); position:rel
 .page-hero .container { position:relative; z-index:3; }
 .page-hero h1 { font-size:clamp(38px,5.5vw,66px); margin-top:18px; }
 .page-hero p { color:var(--muted); max-width:620px; margin-top:18px; font-size:18px; }
+/* bilingual hero: Chinese line under EN heading / body (no extra blocks) */
+.page-hero .cn-line {
+  display:block; font-family:var(--sans); font-weight:500;
+  letter-spacing:.04em; color:rgba(253,247,238,.88);
+}
+.page-hero h1 .cn-line { font-size:clamp(15px,1.7vw,20px); margin-top:16px; line-height:1.5; }
+.page-hero p .cn-line { font-size:15px; line-height:1.85; margin-top:10px; color:rgba(253,247,238,.62); }
 
 /* ---------- Product / category page ---------- */
 .cat-filter { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:46px; }
