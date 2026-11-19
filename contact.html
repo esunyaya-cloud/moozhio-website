@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=20261119c">
+<link rel="stylesheet" href="assets/css/style.css?v=20261119d">
 <link rel="canonical" href="https://www.moozhio.com.cn/contact.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MOOZHIO">
@@ -132,7 +132,13 @@
       </div>
 
       <div class="reveal">
-        <form class="form" id="contactForm">
+        <form class="form" id="contactForm" method="POST">
+          <!-- Web3Forms: replace the value below with your access key (see web3forms.com) -->
+          <input type="hidden" name="access_key" value="f3f188be-203b-4c7f-b5c5-f23f9bbbdebb">
+          <input type="hidden" name="subject" value="Website enquiry — MOOZHIO">
+          <input type="hidden" name="from_name" value="MOOZHIO Website">
+          <!-- honeypot: bots tick it, humans never see it -->
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none!important">
           <div class="field">
             <label for="name">Your name</label>
             <input id="name" name="name" type="text" placeholder="Full name" required>
@@ -208,7 +214,7 @@
   <button class="navb next" aria-label="Next">›</button>
 </div>
 
-<script src="assets/js/data.js?v=20261119c"></script>
-<script src="assets/js/main.js?v=20261119c"></script>
+<script src="assets/js/data.js?v=20261119d"></script>
+<script src="assets/js/main.js?v=20261119d"></script>
 </body>
 </html>

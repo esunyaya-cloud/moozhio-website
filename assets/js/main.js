@@ -288,16 +288,70 @@
     });
   }
 
-  /* ---------------- Contact form ---------------- */
+  /* ---------------- Contact form ----------------
+     Submissions are relayed to email by Web3Forms (static-site friendly).
+     The access key lives in the hidden input[name="access_key"] of #contactForm.
+     ------------------------------------------------------------------ */
+  const FORM_ENDPOINT = "https://api.web3forms.com/submit";
+  const FALLBACK_MAIL = "m1@moozhio.com";
+
   function initForm() {
     const f = $("#contactForm");
     if (!f) return;
-    f.addEventListener("submit", (e) => {
-      e.preventDefault();
+    const btn = f.querySelector('button[type="submit"]');
+    const btnHTML = btn ? btn.innerHTML : "";
+
+    const note = (msg, tone) => {
+      let n = f.querySelector(".form-note");
+      if (!n) {
+        n = document.createElement("p");
+        n.className = "form-note";
+        n.style.cssText = "margin-top:14px;font-size:14px;line-height:1.6";
+        f.appendChild(n);
+      }
+      n.style.color = tone === "err" ? "#e0857a" : "var(--muted)";
+      n.innerHTML = msg;
+    };
+
+    const done = () => {
       f.innerHTML = `<div style="text-align:center;padding:30px 0">
         <div style="font-family:var(--serif);font-size:30px;color:var(--bronze)">Thank you</div>
         <p style="color:var(--muted);margin-top:10px">Your enquiry has been received. Our project team will respond within 1 business day.</p>
       </div>`;
+    };
+
+    f.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (f.dataset.busy === "1") return;
+
+      const keyEl = f.querySelector('input[name="access_key"]');
+      const key = keyEl ? keyEl.value.trim() : "";
+
+      // Not configured yet: never fake a success, hand the lead a direct channel instead.
+      if (!key || key.indexOf("YOUR_") === 0) {
+        note('Form delivery is not configured yet. Please email us directly at <a href="mailto:' +
+          FALLBACK_MAIL + '" style="color:var(--bronze)">' + FALLBACK_MAIL + "</a>.", "err");
+        return;
+      }
+
+      f.dataset.busy = "1";
+      if (btn) { btn.disabled = true; btn.style.opacity = ".65"; btn.textContent = "Sending…"; }
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(f)
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.ok && json.success !== false) { done(); return; }
+        throw new Error(json.message || "Request failed");
+      } catch (err) {
+        note('Sorry, sending failed. Please retry, or email us at <a href="mailto:' +
+          FALLBACK_MAIL + '" style="color:var(--bronze)">' + FALLBACK_MAIL + "</a>.", "err");
+        f.dataset.busy = "";
+        if (btn) { btn.disabled = false; btn.style.opacity = ""; btn.innerHTML = btnHTML; }
+      }
     });
   }
 
